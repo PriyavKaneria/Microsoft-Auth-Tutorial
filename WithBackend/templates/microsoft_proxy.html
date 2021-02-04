@@ -1,0 +1,19 @@
+<html>
+<script>
+    function onLoad() {
+        // ################# FetchAPI #################
+        var data = new FormData();
+        data.append('sub','{{ token }}');
+        console.log('{{redirect_url}}');
+        fetch("http://localhost:8000/add-microsoft-cookie",
+            {method: 'POST', mode: 'cors', body: data})
+            .then(response => response.json())
+            .then(redirect)
+            .catch(console.error);
+        function redirect() {
+            window.location.href = "http://localhost:8000" + "{{ redirect_url }}";
+        };
+    }
+    onLoad();
+</script>
+</html>
